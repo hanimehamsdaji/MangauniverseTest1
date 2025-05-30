@@ -85,9 +85,7 @@
       box-shadow: var(--shadow-heavy);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-    }
-
-    .menu-icon {
+    }    .menu-icon {
       font-size: 1.5rem;
       cursor: pointer;
       transition: var(--transition);
@@ -96,6 +94,9 @@
       border-radius: var(--border-radius);
       background: rgba(255,255,255,0.05);
       border: 1px solid rgba(255,255,255,0.1);
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .menu-icon:hover {
@@ -1703,10 +1704,19 @@
     }
 
     /* Premium responsive improvements */
-    @media (max-width: 768px) {
-      .header {
+    @media (max-width: 768px) {      .header {
         padding: 1.2rem 1.5rem;
         gap: 0.8rem;
+      }
+
+      .menu-icon {
+        padding: 0.6rem;
+        font-size: 1.3rem;
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       .logo {
@@ -3512,12 +3522,19 @@ ${orderItemsList}
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
       });
-    }
-
-    // Menu and navigation functions
+    }    // Menu and navigation functions
     function toggleMenu() {
-      const nav = document.getElementById('navMenu');
-      nav.classList.toggle('active');
+      try {
+        const nav = document.getElementById('navMenu');
+        if (nav) {
+          nav.classList.toggle('active');
+          console.log('Menu toggled, active:', nav.classList.contains('active'));
+        } else {
+          console.error('Navigation menu not found');
+        }
+      } catch (error) {
+        console.error('Error in toggleMenu:', error);
+      }
     }
 
     function updateActiveMenuItem(activePage) {
@@ -4163,8 +4180,7 @@ ${orderItemsList}
         updateCartBadge();
         showPage('home');
         updateSearchVisibility();
-        
-        // Initialize typing effect like HaniZED
+          // Initialize typing effect like HaniZED
         setTimeout(() => {
           const typingText = document.getElementById('typingText');
           if (typingText) {
@@ -4177,18 +4193,45 @@ ${orderItemsList}
           saveOriginalStoreProductsOrder();
         }, 500);
         
+        // Add additional event listeners for hamburger menu to ensure it works
+        const menuIcon = document.querySelector('.menu-icon');
+        if (menuIcon) {
+          // Remove any existing listeners first
+          menuIcon.removeEventListener('click', toggleMenu);
+          menuIcon.removeEventListener('touchstart', toggleMenu);
+          
+          // Add fresh listeners
+          menuIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+          });
+          
+          menuIcon.addEventListener('touchstart', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleMenu();
+          }, { passive: false });
+          
+          console.log('Hamburger menu event listeners attached');
+        } else {
+          console.error('Menu icon not found');
+        }
+        
       } catch (error) {
         console.error('Error in DOMContentLoaded:', error);
       }
-      
-      // Close menu when clicking/touching outside with improved handling
+        // Close menu when clicking/touching outside with improved handling
       function handleMenuClose(event) {
         try {
           const nav = document.getElementById('navMenu');
           const menuIcon = document.querySelector('.menu-icon');
           
+          // Don't close if clicking on menu icon or nav menu itself
           if (nav && menuIcon && event.target && 
-              !nav.contains(event.target) && !menuIcon.contains(event.target)) {
+              !nav.contains(event.target) && 
+              !menuIcon.contains(event.target) &&
+              event.target !== menuIcon) {
             nav.classList.remove('active');
           }
         } catch (error) {
@@ -4197,15 +4240,24 @@ ${orderItemsList}
       }
       
       // Handle both click and touch events for better mobile support
-      document.addEventListener('click', handleMenuClose);
-      document.addEventListener('touchstart', handleMenuClose, { passive: true });
-      
-      // Also close menu when page changes
-      const originalShowPage = showPage;
-      showPage = function(page) {
+      // Use capture phase to ensure proper event handling
+      document.addEventListener('click', handleMenuClose, true);
+      document.addEventListener('touchstart', handleMenuClose, { passive: true, capture: true });      
+      // Also close menu when page changes - consolidated version
+      const originalShowPageFunc = window.showPage;
+      window.showPage = function(page) {
         const nav = document.getElementById('navMenu');
         if (nav) nav.classList.remove('active');
-        return originalShowPage(page);
+        
+        // Call original function and then re-initialize handlers
+        const result = originalShowPageFunc ? originalShowPageFunc(page) : showPage(page);
+        
+        // Re-initialize click handlers after page change
+        setTimeout(() => {
+          initializeProductCardClickHandlers();
+        }, 500);
+        
+        return result;
       };
     });
 
@@ -4418,9 +4470,7 @@ ${orderItemsList}
       if (event.target === modal) {
         closeProductDetailsModal();
       }
-    });
-
-    // Close modal with Escape key
+    });    // Close modal with Escape key
     document.addEventListener('keydown', function(event) {
       if (event.key === 'Escape') {
         const modal = document.getElementById('productDetailsModal');
@@ -4428,26 +4478,13 @@ ${orderItemsList}
           closeProductDetailsModal();
         }
       }
-    });
-
-    // Initialize product card handlers when DOM is ready
+    });    // Combined DOMContentLoaded handler to avoid conflicts
     document.addEventListener('DOMContentLoaded', function() {
       // Delay to ensure all elements are loaded
       setTimeout(() => {
         initializeProductCardClickHandlers();
       }, 1000);
     });
-
-    // Re-initialize handlers when switching pages or after search
-    const originalShowPage = window.showPage || showPage;
-    window.showPage = function(page) {
-      const result = originalShowPage(page);
-      // Re-initialize click handlers after page change
-      setTimeout(() => {
-        initializeProductCardClickHandlers();
-      }, 500);
-      return result;
-    };
   </script>
 </body>
 </html>
