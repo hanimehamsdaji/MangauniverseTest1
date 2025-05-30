@@ -224,9 +224,7 @@
       background: linear-gradient(135deg, #f1c40f, var(--accent-color));
       transform: scale(1.05);
       box-shadow: var(--shadow-medium);
-    }
-
-    /* Premium navigation */
+    }    /* Premium navigation */
     nav {
       background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
       color: white;
@@ -1700,10 +1698,7 @@
       .order-summary {
         padding: 1.5rem;
       }
-    }
-
-    /* Premium responsive improvements */
-    @media (max-width: 768px) {
+    }    /* Premium responsive improvements */    @media (max-width: 768px) {
       .header {
         padding: 1.2rem 1.5rem;
         gap: 0.8rem;
@@ -1719,6 +1714,55 @@
 
       .mobile-search-btn {
         display: flex;
+      }
+      /* Fix for mobile navigation menu */
+      nav {
+        width: 100vw; /* Use viewport width to ensure full width */
+        max-width: 100%; /* Prevent horizontal scrolling */
+        border-radius: 0;
+        right: 0;
+        left: 0;
+        box-shadow: none;
+        border-left: none;
+        position: fixed; /* Make sure it's fixed */
+        top: 0;
+        bottom: 0;
+        margin: 0; /* Remove any margins */
+        padding: 0; /* Remove any padding */
+      }
+
+      nav.active {
+        transform: translateX(0);
+        width: 100%; /* Ensure full width when active */
+      }
+
+      nav .nav-header {
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 1.4rem;
+        background-color: var(--accent-color);
+        color: var(--primary-color);
+        margin: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        width: 100%; /* Ensure full width for the header */
+      }
+      
+      nav a {
+        padding: 1.2rem 2rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        text-align: right;
+        font-size: 1.2rem;
+        margin: 0;
+        width: 100%; /* Ensure full width for links */
+      }
+      
+      nav a.active {
+        background: #27292D;
+        border-right: none;
+      }
+      
+      nav a .nav-icon {
+        margin-left: 1rem;
       }
 
       .welcome {
@@ -3507,12 +3551,30 @@ ${orderItemsList}
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
       });
-    }
-
-    // Menu and navigation functions
+    }    // Menu and navigation functions
     function toggleMenu() {
       const nav = document.getElementById('navMenu');
       nav.classList.toggle('active');
+      
+      // Prevent scrolling when menu is open
+      if (nav.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+        
+        // For iOS Safari compatibility - prevent background content scrolling
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.top = `-${window.scrollY}px`;
+      } else {
+        // Restore scrolling when menu is closed
+        document.body.style.overflow = '';
+        
+        // For iOS Safari compatibility - restore scroll position
+        const scrollY = document.body.style.top;
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        window.scrollTo(0, parseInt(scrollY || '0') * -1);
+      }
     }
 
     function updateActiveMenuItem(activePage) {
