@@ -1720,33 +1720,6 @@
       .mobile-search-btn {
         display: flex;
       }
-      
-      /* Mobile navigation adjustments to match screenshot */
-      nav {
-        width: 100%;
-        right: 0;
-        height: auto;
-        max-height: 80vh;
-        background: var(--primary-color);
-      }
-      
-      nav .nav-header {
-        padding: 1.2rem;
-        margin: 0;
-        font-size: 1.2rem;
-        background-color: var(--accent-color);
-      }
-      
-      nav a {
-        padding: 0.9rem 1.5rem;
-        margin: 0;
-        border-bottom: none;
-        text-align: right;
-      }
-      
-      nav a .nav-icon {
-        margin-left: 0.8rem;
-      }
 
       .welcome {
         margin: 0;
@@ -1841,11 +1814,18 @@
         height: 20px;
         font-size: 0.7rem;
         max-width: 45px;
-      }
-
-      nav a {
+      }      nav a {
         padding: 1.5rem 1.5rem;
         font-size: 1rem;
+      }
+
+      /* Mobile navigation - full screen width to reach phone edges */
+      nav {
+        width: 100% !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        box-shadow: 0 0 40px rgba(0,0,0,0.5) !important;
       }
     }
 
@@ -2160,13 +2140,13 @@
     </section>
 
     <section class="products slide-up" id="products">
-      <h2>مجموعتنا الحصرية</h2>      <div class="product-list">        <!-- عرض منتجات مختارة في الصفحة الرئيسية -->        <div class="product-card" data-product="naruto-figure">
-          <div class="product-image">            <img src="https://i.imgur.com/0yn6eDs.jpeg" alt="فيجور ناروتو الذهبي">
+      <h2>مجموعتنا الحصرية</h2>      <div class="product-list">        <!-- عرض منتجات مختارة في الصفحة الرئيسية -->        <div class="product-card" data-product="luffy-gear5">
+          <div class="product-image">            <img src="https://i.imgur.com/0yn6eDs.jpeg" alt="Luffy Gear 5">
           </div>          <div class="product-badge">حصري</div>
           <div class="info">
-            <h3>فيجور ناروتو الذهبي</h3>
+            <h3>Luffy Gear 5</h3>
             <div class="price">2500 دج</div>
-            <button class="add-to-cart-btn" onclick="addToCart('naruto-figure', 'فيجور ناروتو الذهبي', 2500)">
+            <button class="add-to-cart-btn" onclick="addToCart('luffy-gear5', 'Luffy Gear 5', 2500)">
               <span>🛒</span>
               <span>أضف للمجموعة</span>
             </button>
@@ -2267,15 +2247,14 @@
       </p>
       
       <div class="store-products-container">        <div class="product-list" id="storeProductList">
-            <!-- ==================== بداية منتج جديد ==================== -->
-          <div class="product-card" data-product="naruto-figure">            <div class="product-image">
-              <img src="https://i.imgur.com/0yn6eDs.jpeg" alt="فيجور ناروتو الذهبي">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="luffy-gear5">            <div class="product-image">
+              <img src="https://i.imgur.com/0yn6eDs.jpeg" alt="Luffy Gear 5">
             </div>
             <div class="product-badge">حصري</div>
             <div class="info">
-              <h3>فيجور ناروتو الذهبي</h3>
+              <h3>Luffy Gear 5</h3>
               <div class="price">2500 دج</div>
-              <button class="add-to-cart-btn" onclick="addToCart('naruto-figure', 'فيجور ناروتو الذهبي', 2500)">
+              <button class="add-to-cart-btn" onclick="addToCart('luffy-gear5', 'Luffy Gear 5', 2500)">
                 <span>🛒</span>
                 <span>أضف للمجموعة</span>
               </button>
@@ -2761,10 +2740,9 @@
     let cart = [];
 
     // Product database with detailed information
-    const productDatabase = {
-      'naruto-figure': {
-        id: 'naruto-figure',
-        name: 'فيجور ناروتو الذهبي',
+    const productDatabase = {      'luffy-gear5': {
+        id: 'luffy-gear5',
+        name: 'Luffy Gear 5',
         price: 2500,
         image: 'https://i.imgur.com/0yn6eDs.jpeg',
         badge: 'حصري',
@@ -3534,13 +3512,12 @@ ${orderItemsList}
         submitBtn.innerHTML = originalText;
         submitBtn.disabled = false;
       });
-    }    // Menu and navigation functions
+    }
+
+    // Menu and navigation functions
     function toggleMenu() {
       const nav = document.getElementById('navMenu');
       nav.classList.toggle('active');
-      
-      // No need to prevent scrolling when menu is open
-      // based on the screenshot, the menu doesn't take the full screen
     }
 
     function updateActiveMenuItem(activePage) {
@@ -3652,30 +3629,18 @@ ${orderItemsList}
       
       // Fallback: hide spinner after maximum timeout
       setTimeout(hideSpinner, 2000);
-    }    function scrollToContact() {
-      if (currentPage !== 'home') {
-        showPage('home');
-        setTimeout(() => {
-          const contactSection = document.getElementById('contact-section');
-          if (contactSection) {
-            contactSection.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }, 500);
-      } else {
-        // Even when already on home page, add delay to avoid conflicts with other scroll operations
-        setTimeout(() => {
-          const contactSection = document.getElementById('contact-section');
-          if (contactSection) {
-            contactSection.scrollIntoView({ 
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        }, 300);
-      }
+        function scrollToContact() {
+      // Simply show the home page and scroll to contact section
+      showPage('home');
+      setTimeout(() => {
+        const contactSection = document.getElementById('contact-section');
+        if (contactSection) {
+          contactSection.scrollIntoView({ 
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      }, 500);
     }
 
     // Search functionality
