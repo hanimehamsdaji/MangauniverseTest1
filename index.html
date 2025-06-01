@@ -8,12 +8,93 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">  <style>
     * {
       box-sizing: border-box;
       padding: 0;
       margin: 0;
+    }
+
+    /* Store Category Filters */
+    .category-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+      .category-btn {
+      background-color: var(--secondary-color);
+      color: #fff;
+      border: none;
+      padding: 0.7rem 1.5rem;
+      border-radius: var(--border-radius);
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 1px;
+      font-family: 'Orbitron', sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .category-btn:hover {
+      background-color: #2a2a2a;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .category-btn.active {
+      background-color: var(--accent-color);
+      color: var(--primary-color);
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+      .category-btn.active:hover {
+      background-color: #e5c24d; /* slightly lighter gold for hover */
+      transform: translateY(-2px);
+    }
+    
+    /* Empty category message */
+    #empty-category-message {
+      background-color: var(--bg-light);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 500px;
+      box-shadow: var(--shadow-light);
+      animation: fadeIn 0.5s ease-out;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #666;
+      font-size: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    #empty-category-message i {
+      font-size: 2.5rem;
+      color: var(--accent-color);
+      opacity: 0.7;
+      margin-bottom: 0.5rem;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @media (max-width: 768px) {
+      .category-filters {
+        gap: 0.5rem;
+      }
+      
+      .category-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.85rem;
+      }
     }
 
     :root {
@@ -2229,8 +2310,14 @@
         اكتشف مجموعتنا الكاملة من الفيجور الحصرية والتيشرتات المميزة. كل منتج مختار بعناية لمحبي الأنمي والمانغا
       </p>
       
-      <div class="store-products-container">        <div class="product-list" id="storeProductList">
-            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="luffy-gear-5">            <div class="product-image">
+      <div class="category-filters">
+        <button class="category-btn active" data-category="all">TOUS</button>
+        <button class="category-btn" data-category="figurines">FIGURINES</button>
+        <button class="category-btn" data-category="vetements">VÊTEMENTS</button>
+        <button class="category-btn" data-category="accessoires">ACCESSOIRES</button>
+      </div>
+        <div class="store-products-container"><div class="product-list" id="storeProductList">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="luffy-gear-5" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/0yn6eDs.jpeg" alt="Luffy Gear 5 King of Artist II">
             </div>
             <div class="product-badge">حصري</div>
@@ -2243,9 +2330,8 @@
               </button>
             </div>          </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->
-          <div class="product-card" data-product="Itachi Uchiha Grandista">
+            <!-- ==================== بداية منتج جديد ==================== -->
+          <div class="product-card" data-product="Itachi Uchiha Grandista" data-category="figurines">
             <div class="product-image">
               <img src="https://i.imgur.com/BwCduxr.jpeg" alt="Itachi Uchiha Grandista">
             </div>
@@ -2260,8 +2346,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Minato Namikaze Funko POP">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Minato Namikaze Funko POP" data-category="figurines">
             <div class="product-image">
               <img src="https://i.imgur.com/etUU55k.jpeg" alt="تيشرت ون بيس بريميوم">
             </div>            <div class="product-badge">تخفيض</div>
@@ -2277,8 +2362,7 @@
               </button>
             </div>
           </div>
-          <!-- ==================== نهاية منتج ==================== -->
-            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Naruto Uzumaki Grandista">            <div class="product-image">
+          <!-- ==================== نهاية منتج ==================== -->            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Naruto Uzumaki Grandista" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/950mAvW.jpeg" alt="Naruto Uzumaki Grandista">
             </div>
             <div class="product-badge">الأكثر طلباً</div>
@@ -2291,8 +2375,7 @@
               </button>
             </div>
           </div>
-          <!-- ==================== نهاية منتج ==================== -->
-            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Sasuke Uchiha Grandista">            <div class="product-image">
+          <!-- ==================== نهاية منتج ==================== -->            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Sasuke Uchiha Grandista" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/ZNixoFE.jpeg" alt="Sasuke Uchiha Grandista">
             </div>
             <div class="info">
@@ -2304,9 +2387,8 @@
               </button>
             </div>
           </div>
-          <!-- ==================== نهاية منتج ==================== -->
-            <!-- ==================== بداية منتج جديد ==================== -->
-          <div class="product-card" data-product="Son Goku Grandista">            <div class="product-image">
+          <!-- ==================== نهاية منتج ==================== -->            <!-- ==================== بداية منتج جديد ==================== -->
+          <div class="product-card" data-product="Son Goku Grandista" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/ICPjYLz.png" alt="Son Goku Grandista">
             </div>
             <div class="product-badge">محدود</div>            <div class="info">
@@ -2319,8 +2401,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.3">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.3" data-category="figurines">
             <div class="product-image">              <img src="https://i.imgur.com/J3g3hWz.png" alt="Monkey D. Luffy Gear 5 Vol.3">
             </div>            <div class="info">
               <h3>Monkey D. Luffy Gear 5 Vol.3</h3>
@@ -2332,8 +2413,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.2">            <div class="product-image">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.2" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/PaAQFhV.png" alt="Monkey D. Luffy Gear 5 Vol.2">
             </div>
             <div class="product-badge">جديد</div>            <div class="info">
@@ -2346,8 +2426,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.1">            <div class="product-image">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.1" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/1HPnbNS.png" alt="Monkey D. Luffy Gear 5 Vol.1">
             </div>            <div class="info">
               <h3>Monkey D. Luffy Gear 5 Vol.1</h3>
@@ -2359,8 +2438,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.4">            <div class="product-image">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Gear 5 Vol.4" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/SBEFGUc.png" alt="Monkey D. Luffy Gear 5 Vol.4">
             </div>
             <div class="product-badge">حصري</div>            <div class="info">
@@ -2373,8 +2451,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Midoriya Izuku Amazing Heros Plus">            <div class="product-image">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Midoriya Izuku Amazing Heros Plus" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/9Wi08V0.jpeg" alt="Midoriya Izuku Amazing Heros Plus">
             </div>
             <div class="product-badge">تخفيض</div>
@@ -2390,8 +2467,7 @@
               </button>
             </div>
           </div>
-          <!-- ==================== نهاية منتج ==================== -->
-            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Masterlise Expiece">
+          <!-- ==================== نهاية منتج ==================== -->            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Monkey D. Luffy Masterlise Expiece" data-category="figurines">
             <div class="product-image">
               <img src="https://i.imgur.com/1x44EOG.png" alt="Monkey D. Luffy Masterlise Expiece">
             </div>
@@ -2405,8 +2481,7 @@
             </div>
           </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Satoru Gojo Awakening Luminasta">            <div class="product-image">
+            <!-- ==================== بداية منتج جديد ==================== -->          <div class="product-card" data-product="Satoru Gojo Awakening Luminasta" data-category="figurines">            <div class="product-image">
               <img src="https://i.imgur.com/rQ9TWCg.png" alt="Satoru Gojo Awakening Luminasta">
             </div>            <div class="info">
               <h3>Satoru Gojo Awakening Luminasta</h3>
@@ -2417,9 +2492,8 @@
               </button>
             </div>          </div>
           <!-- ==================== نهاية منتج ==================== -->
-          
-          <!-- ==================== بداية منتج جديد ==================== -->
-          <div class="product-card" data-product="zoro-battle-record">
+            <!-- ==================== بداية منتج جديد ==================== -->
+          <div class="product-card" data-product="zoro-battle-record" data-category="figurines">
             <div class="product-image">
               <img src="https://i.imgur.com/6OjKP5p.jpeg" alt="Zoro battle record collection">
             </div>
@@ -2433,9 +2507,7 @@
               </button>
             </div>
           </div>
-          <!-- ==================== نهاية منتج ==================== -->
-
-        </div>
+          <!-- ==================== نهاية منتج ==================== -->        </div>
       </div>
     </div>
   </section>
@@ -2828,14 +2900,70 @@
     let originalStoreProductsOrder = [];
     let scrollTimeout = null;
       // Cart stored in memory only (no localStorage in Claude.ai artifacts)
-    let cart = [];
-
-    // Product database with detailed information
-    const productDatabase = {      'luffy-gear-5': {
+    let cart = [];    // Product database with detailed information
+    const productDatabase = {
+      'anime-tshirt-collection': {
+        id: 'anime-tshirt-collection',
+        name: 'One Piece T-shirt Collection',
+        price: 2500,
+        image: 'https://i.imgur.com/LYjPfIU.jpeg',
+        badge: 'جديد',
+        description: 'مجموعة من تيشرتات أنمي ون بيس بجودة عالية. صُنعت من قطن 100% لتوفير الراحة والمتانة. مناسبة لجميع المناسبات اليومية.',
+        specs: {
+          'المادة': 'قطن 100%',
+          'المقاسات المتوفرة': 'S, M, L, XL',
+          'الألوان': 'أسود، أبيض، أزرق',
+          'العناية': 'غسيل آلي بماء بارد'
+        }
+      },
+      'naruto-hoodie-premium': {
+        id: 'naruto-hoodie-premium',
+        name: 'Naruto Hokage Hoodie',
+        price: 3800,
+        image: 'https://i.imgur.com/ZR9EPoP.jpeg',
+        badge: 'حصري',
+        description: 'هودي ناروتو هوكاجي بتصميم حصري وجودة ممتازة. مصنوع من مزيج من القطن والبوليستر للدفء والمتانة. مثالي لعشاق أنمي ناروتو.',
+        specs: {
+          'المادة': '80% قطن، 20% بوليستر',
+          'المقاسات المتوفرة': 'M, L, XL, XXL',
+          'الألوان': 'أسود، رمادي',
+          'العناية': 'غسيل آلي بماء بارد، لا تستخدم المجفف'
+        }
+      },
+      'anime-keychain-set': {
+        id: 'anime-keychain-set',
+        name: 'Anime Characters Keychain Set',
+        price: 1200,
+        image: 'https://i.imgur.com/gf9NjYl.jpeg',
+        badge: 'مجموعة',
+        description: 'مجموعة من سلاسل المفاتيح لشخصيات أنمي مشهورة. مصنوعة من مواد عالية الجودة ومتينة. تضم 5 شخصيات مختلفة في علبة هدية أنيقة.',
+        specs: {
+          'المادة': 'سبائك الزنك',
+          'عدد القطع': '5',
+          'الحجم': '4-5 سم لكل قطعة',
+          'التغليف': 'علبة هدية'
+        }
+      },
+      'naruto-wallet': {
+        id: 'naruto-wallet',
+        name: 'Naruto Premium Wallet',
+        price: 1800,
+        image: 'https://i.imgur.com/pUFgQdj.jpeg',
+        badge: 'تخفيض',
+        description: 'محفظة ناروتو بريميوم مصنوعة من الجلد الاصطناعي عالي الجودة. تحتوي على أقسام متعددة للبطاقات والنقود. تصميم أنيق مناسب للاستخدام اليومي.',
+        specs: {
+          'المادة': 'جلد اصطناعي',
+          'الأبعاد': '12 × 9.5 سم',
+          'الأقسام': '6 فتحات للبطاقات، جيب للعملات المعدنية، قسم للنقود الورقية',
+          'اللون': 'أسود مع شعار ناروتو'
+        }
+      },
+      'luffy-gear-5': {
         id: 'luffy-gear-5',
         name: 'Luffy Gear 5 King of Artist II',
         price: 7000,
-        image: 'https://i.imgur.com/0yn6eDs.jpeg',        badge: 'حصري',
+        image: 'https://i.imgur.com/0yn6eDs.jpeg',
+        badge: 'حصري',
         tags: ['Figurine', 'anime', 'فيجر'],        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">شخصية مونكي دي لوفي المحرك الخامس الحصرية، مصنوعة من مادة PVC عالية الجودة، مجموعة King of Artist من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة، مثالي لمحبي ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la gamme King of Artist de Banpresto. Design artistique exceptionnel avec des détails minutieux, parfaite pour les collectionneurs et fans de One Piece.</div></div></div>',        specs: {
           'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">15 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">15 cm</div></div>',
           'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
@@ -3680,9 +3808,7 @@ Date: ${new Date().toLocaleString('fr-FR', {
               if (productsTitle) {
                 productsTitle.textContent = 'مجموعتنا الحصرية';
               }
-              break;
-              
-            case 'products':
+              break;                case 'products':
               const productsPage = document.getElementById('products-page');
               if (productsPage) productsPage.style.display = 'block';
               if (footer) footer.style.display = 'block';
@@ -3693,6 +3819,12 @@ Date: ${new Date().toLocaleString('fr-FR', {
                 if (searchInput && !searchInput.value.trim()) {
                   resetStoreProductDisplay();
                 }
+                
+                // Initialize category filters when switching to products page
+                initCategoryFilters();
+                
+                // Explicitly initialize active category button
+                initActiveCategoryButton();
               }, 100);
               break;
               
@@ -3985,12 +4117,23 @@ Date: ${new Date().toLocaleString('fr-FR', {
         storeDescription.style.display = 'block';
       }
       
+      // Get currently active category filter
+      const activeCategory = document.querySelector('.category-btn.active')?.getAttribute('data-category') || 'all';
+      
       if (originalStoreProductsOrder.length > 0 && storeProductList) {
         storeProductList.innerHTML = '';
         originalStoreProductsOrder.forEach((productData) => {
           const tempDiv = document.createElement('div');
           tempDiv.innerHTML = productData.html;
           const restoredCard = tempDiv.firstElementChild;
+          
+          // Get product category
+          const productCategory = restoredCard.getAttribute('data-category');
+          
+          // Skip this product if it doesn't match the active category filter
+          if (activeCategory !== 'all' && productCategory !== activeCategory) {
+            return;
+          }
           
           restoredCard.classList.remove('search-highlight', 'search-dimmed');
           restoredCard.style.opacity = '';
@@ -4137,6 +4280,9 @@ Date: ${new Date().toLocaleString('fr-FR', {
         return;
       }
       
+      // Get currently active category filter
+      const activeCategory = document.querySelector('.category-btn.active')?.getAttribute('data-category') || 'all';
+      
       const matchingProducts = [];
         // Search through original store products, not current DOM
       originalStoreProductsOrder.forEach(productData => {
@@ -4149,6 +4295,14 @@ Date: ${new Date().toLocaleString('fr-FR', {
         
         // Get product ID from the card's data attribute
         const productId = card.getAttribute('data-product');
+        
+        // Get product category
+        const productCategory = card.getAttribute('data-category');
+        
+        // Skip this product if it doesn't match the active category filter
+        if (activeCategory !== 'all' && productCategory !== activeCategory) {
+          return;
+        }
         
         // Get description from productDatabase if available
         let productDescription = '';
@@ -4568,22 +4722,180 @@ Date: ${new Date().toLocaleString('fr-FR', {
         }
       }
     });
-
+    
     // Initialize product card handlers when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
       // Delay to ensure all elements are loaded
       setTimeout(() => {
         initializeProductCardClickHandlers();
+        
+        // Initialize category filters
+        initCategoryFilters();
+        
+        // Explicitly initialize active category button
+        initActiveCategoryButton();
+        
+        // Save original store products order        saveOriginalStoreProductsOrder();
       }, 1000);
     });
-
+    
     // Re-initialize handlers when switching pages or after search
     const originalShowPage = window.showPage || showPage;
-    window.showPage = function(page) {
+    
+    // Implementation of category filters
+    function initCategoryFilters() {
+      try {
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        const productCards = document.querySelectorAll('#storeProductList .product-card');
+        const emptyMessageContainer = document.querySelector('#storeProductList');
+        
+        if (!categoryButtons.length) {
+          console.warn('No category buttons found');
+          return;
+        }
+        
+        if (!productCards.length) {
+          console.warn('No product cards found');
+          return;
+        }
+        
+        console.log('Initializing category filters with', categoryButtons.length, 'buttons and', productCards.length, 'products');
+        
+        // Initialize the active button state
+        initActiveCategoryButton();
+        
+        // Check what categories exist in the current products
+        const existingCategories = new Set();
+        productCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (category) {
+            existingCategories.add(category);
+          }
+        });
+        console.log('Existing product categories:', Array.from(existingCategories));
+          // Create empty category message if it doesn't exist
+        let emptyMessage = document.getElementById('empty-category-message');
+        if (!emptyMessage) {
+          emptyMessage = document.createElement('div');
+          emptyMessage.id = 'empty-category-message';
+          emptyMessage.style.display = 'none';
+          emptyMessage.innerHTML = `
+            <i>📦</i>
+            <p>لا توجد منتجات في هذه الفئة حاليًا</p>
+            <p style="font-size: 0.9rem; opacity: 0.7;">Aucun produit dans cette catégorie pour le moment</p>
+          `;
+          emptyMessageContainer.appendChild(emptyMessage);
+        }
+          // Create an array to store the new button references
+        const updatedCategoryButtons = [];
+        
+        // Add click event listener to each category button
+        categoryButtons.forEach(button => {
+          // Remove existing event listeners to prevent duplicates
+          const newButton = button.cloneNode(true);
+          button.parentNode.replaceChild(newButton, button);
+          updatedCategoryButtons.push(newButton);
+          
+          newButton.addEventListener('click', function() {
+            const selectedCategory = this.getAttribute('data-category');
+            console.log('Category button clicked:', selectedCategory);
+            
+            // Remove active class from all buttons using the updated references
+            updatedCategoryButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Count visible products
+            let visibleCount = 0;
+            
+            // Filter products based on selected category
+            productCards.forEach(card => {
+              const cardCategory = card.getAttribute('data-category');
+              
+              if (selectedCategory === 'all' || selectedCategory === cardCategory) {
+                card.style.display = 'block';
+                visibleCount++;
+              } else {
+                card.style.display = 'none';
+              }
+            });
+              // Show empty message if no products are visible
+            if (visibleCount === 0 && selectedCategory !== 'all') {
+              // Update empty message content based on the selected category
+              let categoryName = '';
+              switch(selectedCategory) {
+                case 'figurines':
+                  categoryName = 'الفيجور';
+                  break;
+                case 'vetements':
+                  categoryName = 'الملابس';
+                  break;
+                case 'accessoires':
+                  categoryName = 'الإكسسوارات';
+                  break;
+                default:
+                  categoryName = 'هذه الفئة';
+              }
+              
+              emptyMessage.innerHTML = `
+                <i>📦</i>
+                <p>لا توجد منتجات في فئة ${categoryName} حاليًا</p>
+                <p style="font-size: 0.9rem; opacity: 0.7;">Aucun produit dans cette catégorie pour le moment</p>
+              `;
+              emptyMessage.style.display = 'block';
+              console.log('No products found in category:', selectedCategory);
+            } else {
+              emptyMessage.style.display = 'none';
+            }
+            
+            console.log(`Filtered to ${visibleCount} visible products in category: ${selectedCategory}`);
+            
+            // Reinitialize click handlers after filtering
+            setTimeout(() => {
+              initializeProductCardClickHandlers();
+            }, 100);
+          });
+        });
+        
+        console.log('Category filters initialized successfully');      } catch (error) {
+        console.error('Error initializing category filters:', error);
+        showNotification('خطأ في تهيئة فلاتر التصنيف', 'error');
+      }
+    }
+      // Make sure to properly initialize the active state of category buttons when the page loads
+    function initActiveCategoryButton() {
+      try {
+        console.log('Initializing active category button state...');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        if (!categoryButtons.length) {
+          console.warn('No category buttons found for initialization');
+          return;
+        }
+        
+        // Clear any existing active class
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        
+        // Set 'all' as default active
+        const allButton = Array.from(categoryButtons).find(btn => btn.getAttribute('data-category') === 'all');
+        if (allButton) {
+          allButton.classList.add('active');
+          console.log('Set "all" category button as active');
+        } else {
+          console.warn('Could not find the "all" category button');
+        }
+      } catch (error) {
+        console.error('Error initializing active category button:', error);
+      }
+    }window.showPage = function(page) {
       const result = originalShowPage(page);
       // Re-initialize click handlers after page change
       setTimeout(() => {
         initializeProductCardClickHandlers();
+        
+        // Re-initialize category button states if switching to products page
+        if (page === 'products') {
+          // Ensure we call this function explicitly with a shorter timeout
+          setTimeout(() => initActiveCategoryButton(), 100);
+        }
       }, 500);
       return result;
     };
