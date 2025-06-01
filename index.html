@@ -2274,8 +2274,11 @@
       <div class="contact-container">
         <h2>تواصل مع فريقنا المختص</h2>
         <p>نسعد بالإجابة على استفساراتكم ومساعدتكم في اختيار أفضل المنتجات</p>
-        
-        <form action="#" method="POST" class="contact-form" onsubmit="submitContactForm(event)">
+          <form action="#" method="POST" class="contact-form" onsubmit="submitContactForm(event)">          <input type="hidden" name="access_key" value="157f7660-44ae-4f41-abe0-8471ced20cb1">
+          <input type="hidden" name="from_name" value="MangauniverShop Contact">
+          <input type="hidden" name="subject" value="New Contact Message from Website">
+          <input type="hidden" name="_replyto" id="contactReplyToField">
+          
           <div class="form-group">
             <input type="text" name="name" placeholder="الاسم الكامل" required>
           </div>
@@ -3804,11 +3807,12 @@ Date: ${new Date().toLocaleString('fr-FR', {
             case 'home':
               if (homeContent) homeContent.style.display = 'block';
               if (footer) footer.style.display = 'block';
-              const productsTitle = document.querySelector('.products h2');
-              if (productsTitle) {
+              const productsTitle = document.querySelector('.products h2');              if (productsTitle) {
                 productsTitle.textContent = 'مجموعتنا الحصرية';
               }
-              break;                case 'products':
+              break;
+              
+            case 'products':
               const productsPage = document.getElementById('products-page');
               if (productsPage) productsPage.style.display = 'block';
               if (footer) footer.style.display = 'block';
@@ -4441,15 +4445,46 @@ Date: ${new Date().toLocaleString('fr-FR', {
         mobileSearchBtn.style.display = 'none';
         closeMobileSearch();
       }
-    }
-
-    // Contact form submission
+    }    // Contact form submission
     function submitContactForm(event) {
       event.preventDefault();
       const formData = new FormData(event.target);
       
-      showNotification('تم إرسال رسالتك بنجاح! سنرد عليك قريباً');
-      event.target.reset();
+      // Show loading state
+      const submitBtn = event.target.querySelector('.contact-btn');
+      const originalText = submitBtn.innerHTML;
+      submitBtn.innerHTML = '<span>جار الإرسال...</span> <span>⏳</span>';
+      submitBtn.disabled = true;
+      
+      // Submit to Web3Forms
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+        // Check if response is successful
+        if (response.ok) {
+          return response.json().then(data => {
+            // Success - email sent
+            showNotification('تم إرسال رسالتك بنجاح! سنرد عليك قريباً', 'success');
+            event.target.reset();
+          });
+        } else {
+          // Handle HTTP errors
+          return response.json().then(data => {
+            console.error('Web3Forms error:', data);
+            showNotification('خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى', 'error');
+          }).catch(() => {
+            showNotification('خطأ في إرسال الرسالة. يرجى المحاولة مرة أخرى', 'error');
+          });
+        }
+      }).catch(error => {
+        console.error('Network error:', error);
+        showNotification('خطأ في الاتصال. يرجى التحقق من اتصال الإنترنت والمحاولة مرة أخرى', 'error');
+      }).finally(() => {
+        // Always restore button state
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+      });
     }
 
     // Event listeners and initialization
@@ -4881,11 +4916,12 @@ Date: ${new Date().toLocaleString('fr-FR', {
           console.log('Set "all" category button as active');
         } else {
           console.warn('Could not find the "all" category button');
-        }
-      } catch (error) {
+        }      } catch (error) {
         console.error('Error initializing active category button:', error);
       }
-    }window.showPage = function(page) {
+    }
+    
+    window.showPage = function(page) {
       const result = originalShowPage(page);
       // Re-initialize click handlers after page change
       setTimeout(() => {
