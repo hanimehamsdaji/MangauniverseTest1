@@ -894,44 +894,20 @@
     .search-counter.no-results .counter-icon {
       font-size: 1.5rem;
       font-weight: bold;
-    }
-
-    /* Premium mobile search */
-    .mobile-search-btn {
-      display: none;
-      align-items: center;
-      justify-content: center;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      cursor: pointer;
-      transition: var(--transition);
-      color: var(--accent-color);
-      font-size: 1.2rem;
-      backdrop-filter: blur(20px);
-    }
-
-    .mobile-search-btn:hover {
-      background: rgba(212, 175, 55, 0.1);
-      border-color: var(--accent-color);
-      transform: scale(1.1);
-    }
-
-    .mobile-search-overlay {
+    }    /* Premium mobile search */.mobile-search-overlay {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(10, 10, 10, 0.95);
+      background: rgba(10, 10, 10, 0.97);
       z-index: 2000;
       display: none;
       align-items: flex-start;
       justify-content: center;
-      padding-top: 3rem;
-      backdrop-filter: blur(20px);
+      padding: 2rem 1rem;
+      backdrop-filter: blur(30px);
+      animation: fadeIn 0.3s ease;
     }
 
     .mobile-search-overlay.active {
@@ -939,17 +915,176 @@
     }
 
     .mobile-search-content {
-      width: 90%;
-      max-width: 500px;
-      background: rgba(255,255,255,0.1);
-      border-radius: 50px;
-      padding: 1.2rem;
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-card);
+      border-radius: var(--border-radius-large);
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--accent-color);
+      box-shadow: var(--shadow-heavy);
+      position: relative;
+      margin-top: 20vh;
+      transform: translateY(-20px);
+      opacity: 0;
+      animation: slideInUp 0.4s ease 0.1s forwards;
+    }
+
+    @keyframes slideInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .mobile-search-header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .mobile-search-title {
+      color: var(--text-dark);
+      font-size: 1.3rem;
+      font-weight: 700;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .mobile-close-btn {
+      background: rgba(231, 76, 60, 0.1);
+      border: 2px solid var(--danger-color);
+      color: var(--danger-color);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      font-weight: 700;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .mobile-close-btn:hover {
+      background: var(--danger-color);
+      color: white;
+      transform: scale(1.1);
+      box-shadow: var(--shadow-medium);
+    }
+
+    .mobile-search-input-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #f8f9fa;
+      border: 2px solid #e0e0e0;
+      border-radius: var(--border-radius-large);
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .mobile-search-input-container:focus-within {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+      background: white;
+    }
+
+    .mobile-search-input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-dark);
+      padding: 1.4rem 1.5rem;
+      font-size: 1.1rem;
+      font-family: 'Tajawal', sans-serif;
+      outline: none;
+      direction: rtl;
+      font-weight: 500;
+    }
+
+    .mobile-search-input::placeholder {
+      color: var(--text-light);
+      opacity: 1;
+      font-weight: 400;
+    }
+
+    .mobile-search-actions {
+      display: flex;
       gap: 1rem;
-      backdrop-filter: blur(30px);
-      border: 2px solid rgba(212, 175, 55, 0.3);
-    }    /* Premium page sections */
+      margin-top: 0.5rem;
+    }
+
+    .mobile-search-btn {
+      flex: 1;
+      background: linear-gradient(135deg, var(--accent-color), #f1c40f);
+      border: none;
+      border-radius: var(--border-radius-large);
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-color);
+      font-weight: 700;
+      font-size: 1.1rem;
+      gap: 0.8rem;
+      box-shadow: var(--shadow-medium);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mobile-search-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .mobile-search-btn:hover::before {
+      left: 100%;
+    }
+
+    .mobile-search-btn:hover {
+      background: linear-gradient(135deg, #f1c40f, var(--accent-color));
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-heavy);
+    }
+
+    .mobile-search-btn:active {
+      transform: translateY(0);
+    }
+
+    .mobile-search-tips {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: var(--border-radius);
+      padding: 1rem;
+      margin-top: 1rem;
+    }
+
+    .mobile-search-tips-title {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .mobile-search-tips-text {
+      color: var(--text-light);
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }/* Premium page sections */
     .page-section {
       min-height: 100vh;
       padding: 6rem 3rem 3rem;
@@ -1782,10 +1917,26 @@
       .header {
         padding: 1.2rem 1.5rem;
         gap: 0.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }      .menu-icon {
+        order: 1;
+      }
+
+      .mobile-search-btn {
+        order: 2;
       }
 
       .logo {
         font-size: 1.2rem;
+        order: 3;
+        flex: 1;
+        text-align: center;
+      }
+
+      .cart-icon {
+        order: 4;
       }
 
       .search-container {
@@ -2164,15 +2315,29 @@
       <span class="cart-badge" id="cartBadge">0</span>
     </div>
   </header>
-
   <!-- Mobile Search Overlay -->
   <div class="mobile-search-overlay" id="mobileSearchOverlay">
     <div class="mobile-search-content">
-      <input type="text" class="mobile-search-input" placeholder="ابحث عن المنتجات..." id="mobileSearchInput" onkeypress="handleMobileSearchKeypress(event)" oninput="handleMobileRealTimeSearch(event)">
-      <button class="search-btn" onclick="performMobileSearch()">
-        <span class="search-icon">⌕</span>
-      </button>
-      <button class="mobile-close-btn" onclick="closeMobileSearch()">✕</button>
+      <div class="mobile-search-header">
+        <h3 class="mobile-search-title">البحث في المتجر</h3>
+        <button class="mobile-close-btn" onclick="closeMobileSearch()">✕</button>
+      </div>
+      
+      <div class="mobile-search-input-container">
+        <input type="text" class="mobile-search-input" placeholder="ابحث عن المنتجات، المانغا، الملحقات..." id="mobileSearchInput" onkeypress="handleMobileSearchKeypress(event)" oninput="handleMobileRealTimeSearch(event)">
+      </div>
+      
+      <div class="mobile-search-actions">
+        <button class="mobile-search-btn" onclick="performMobileSearch()">
+          <span class="search-icon">⌕</span>
+          <span>بحث</span>
+        </button>
+      </div>
+      
+      <div class="mobile-search-tips">
+        <div class="mobile-search-tips-title">💡 نصائح للبحث</div>
+        <div class="mobile-search-tips-text">يمكنك البحث بالعنوان، الوصف، أو المواصفات للحصول على أفضل النتائج</div>
+      </div>
     </div>
   </div>
 
