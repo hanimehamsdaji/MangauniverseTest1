@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Debug Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .debug-info {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .viewport-info {
+            margin-bottom: 10px;
+        }
+        
+        .media-query-test {
+            padding: 20px;
+            margin: 10px 0;
+            border: 2px solid #ccc;
+            background: #fff;
+            border-radius: 8px;
+        }
+        
+        /* Test for mobile media query */
+        @media (max-width: 768px) {
+            .media-query-test {
+                background: #e8f5e8 !important;
+                border-color: #4CAF50 !important;
+            }
+            .media-query-test::before {
+                content: "✓ MOBILE STYLES ACTIVE";
+                display: block;
+                font-weight: bold;
+                color: #4CAF50;
+                margin-bottom: 10px;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .media-query-test::before {
+                content: "✗ DESKTOP STYLES ACTIVE";
+                display: block;
+                font-weight: bold;
+                color: #f44336;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="debug-info">
+        <h2>Mobile Debug Information</h2>
+        <div class="viewport-info">
+            <strong>Screen Width:</strong> <span id="screenWidth"></span>px<br>
+            <strong>Window Width:</strong> <span id="windowWidth"></span>px<br>
+            <strong>Device Pixel Ratio:</strong> <span id="pixelRatio"></span><br>
+            <strong>User Agent:</strong> <span id="userAgent"></span>
+        </div>
+    </div>
+    
+    <div class="media-query-test">
+        <h3>Media Query Test (max-width: 768px)</h3>
+        <p>This box should turn green with a checkmark when the screen width is 768px or less.</p>
+        <p>If you're on mobile or have resized your browser window to be narrow, you should see green styling.</p>
+    </div>
+    
+    <div style="margin-top: 30px;">
+        <h3>Instructions:</h3>
+        <ul>
+            <li>On desktop: Resize your browser window to be less than 768px wide</li>
+            <li>On mobile: The green styling should appear automatically</li>
+            <li>Check the main site after confirming this test works</li>
+        </ul>
+    </div>
+    
+    <script>
+        function updateDebugInfo() {
+            document.getElementById('screenWidth').textContent = screen.width;
+            document.getElementById('windowWidth').textContent = window.innerWidth;
+            document.getElementById('pixelRatio').textContent = window.devicePixelRatio;
+            document.getElementById('userAgent').textContent = navigator.userAgent;
+        }
+        
+        updateDebugInfo();
+        window.addEventListener('resize', updateDebugInfo);
+        
+        // Log to console for additional debugging
+        console.log('Screen dimensions:', screen.width + 'x' + screen.height);
+        console.log('Window dimensions:', window.innerWidth + 'x' + window.innerHeight);
+        console.log('Device pixel ratio:', window.devicePixelRatio);
+        console.log('Is mobile user agent:', /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent));
+    </script>
+</body>
+</html>
