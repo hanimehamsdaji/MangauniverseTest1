@@ -1369,9 +1369,7 @@
       background: linear-gradient(135deg, var(--danger-color), #c0392b);
     }    .notification.warning {
       background: linear-gradient(135deg, var(--warning-color), #e67e22);
-    }
-
-    /* Product Details Modal */
+    }    /* Product Details Modal */
     .product-details-modal {
       position: fixed;
       top: 0;
@@ -1383,16 +1381,16 @@
       display: none;
       align-items: center;
       justify-content: center;
-      padding: 2rem;
+      padding: 1rem;
       backdrop-filter: blur(20px);
       animation: fadeIn 0.3s ease;
+      box-sizing: border-box;
+      overflow-y: auto;
     }
 
     .product-details-modal.active {
       display: flex;
-    }
-
-    .product-details-content {
+    }    .product-details-content {
       background: var(--bg-card);
       border-radius: var(--border-radius-large);
       box-shadow: var(--shadow-heavy);
@@ -1400,15 +1398,17 @@
       max-width: 900px;
       max-height: 90vh;
       overflow-y: auto;
+      overflow-x: hidden;
       position: relative;
       border: 2px solid var(--accent-color);
       animation: slideUp 0.4s ease;
-    }
-
-    .product-details-header {
+      box-sizing: border-box;
+    }    .product-details-header {
       position: relative;
       padding: 1rem;
       text-align: left;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .product-details-close {
@@ -1433,43 +1433,51 @@
       border-color: var(--danger-color);
       transform: scale(1.1);
     }    .product-details-body {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2rem;
-      padding: 0 3rem 3rem;
-    }
-
-    .product-details-image {
-      position: relative;
-      text-align: center;
-    }    .product-details-image img {
-      width: 100%;
-      max-width: 500px;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: var(--border-radius-large);
-      box-shadow: var(--shadow-medium);
-      border: 3px solid var(--accent-color);
-    }
-
-    .product-details-badge {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: linear-gradient(135deg, var(--accent-color), #f1c40f);
-      color: var(--primary-color);
-      padding: 0.8rem 1.5rem;
-      border-radius: 50px;
-      font-size: 0.9rem;
-      font-weight: 700;
-      z-index: 2;
-      box-shadow: var(--shadow-light);
-    }
-
-    .product-details-info {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      padding: 0 2rem 2rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    .product-details-header-info {
+      position: relative;
+      text-align: left;
+      padding: 1rem 0;
+      width: 100%;
+      box-sizing: border-box;
+    }    .product-details-image {
+      position: relative;
+      text-align: center;
+      margin: 0 auto 1.5rem;
+      width: 100%;
+      box-sizing: border-box;
+    }    .product-details-image img {
+      width: 100%;
+      max-width: 350px;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+      border-radius: var(--border-radius-large);
+      box-shadow: var(--shadow-light);
+      border: 2px solid rgba(0,0,0,0.05);
+    }.product-details-badge {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: linear-gradient(135deg, var(--accent-color), #f1c40f);
+      color: var(--primary-color);
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      z-index: 2;
+    }    .product-details-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .product-details-info h2 {
@@ -1486,9 +1494,7 @@
       color: var(--accent-color);
       font-weight: 700;
       font-family: 'Orbitron', sans-serif;
-    }
-
-    .product-details-description {
+    }    .product-details-description {
       color: var(--text-light);
       font-size: 1.1rem;
       line-height: 1.6;
@@ -1496,6 +1502,25 @@
       background: rgba(212, 175, 55, 0.05);
       border-radius: var(--border-radius);
       border-right: 4px solid var(--accent-color);
+      width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
+    }
+
+    .product-description-mobile {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .product-description-mobile .description-arabic,
+    .product-description-mobile .description-french {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      word-break: break-word;
+      hyphens: auto;
     }
 
     .product-details-specs {
@@ -1503,6 +1528,8 @@
       padding: 1.5rem;
       border-radius: var(--border-radius);
       border: 1px solid rgba(0,0,0,0.05);
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .product-details-specs h4 {
@@ -1516,14 +1543,14 @@
       list-style: none;
       padding: 0;
       margin: 0;
-    }
-
-    .product-details-specs li {
+    }    .product-details-specs li {
       padding: 0.5rem 0;
       color: var(--text-light);
       border-bottom: 1px solid rgba(0,0,0,0.05);
       display: flex;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
     .product-details-specs li:last-child {
@@ -1533,12 +1560,13 @@
     .product-details-specs li strong {
       color: var(--text-dark);
       font-weight: 600;
-    }
-
-    .product-details-actions {
+      min-width: 100px;
+    }.product-details-actions {
       display: flex;
       gap: 1rem;
       margin-top: auto;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .btn-add-to-cart, .btn-buy-now {
@@ -1558,6 +1586,9 @@
       letter-spacing: 0.5px;
       box-shadow: var(--shadow-medium);
       border: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .btn-add-to-cart {
@@ -1583,33 +1614,110 @@
       background: linear-gradient(135deg, #f1c40f, var(--accent-color));
       transform: translateY(-3px);
       box-shadow: var(--shadow-heavy);
-    }
-
-    /* Mobile responsiveness for product details modal */
+    }    /* Mobile responsiveness for product details modal */
     @media (max-width: 768px) {
       .product-details-content {
         margin: 1rem;
         max-height: 95vh;
+        width: 90%;
+        overflow-x: hidden;
       }
 
       .product-details-body {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-        padding: 0 1.5rem 2rem;
+        padding: 0 1rem 1.5rem;
+        gap: 1rem;
       }
 
       .product-details-info h2 {
-        font-size: 2rem;
+        font-size: 1.6rem;
       }
 
       .product-details-price {
-        font-size: 1.8rem;
-      }      .product-details-actions {
+        font-size: 1.5rem;
+      }
+
+      .product-details-description {
+        padding: 1rem;
+        font-size: 1rem;
+      }
+
+      .product-details-specs {
+        padding: 1rem;
+      }
+
+      .product-details-actions {
         flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .btn-add-to-cart, .btn-buy-now {
+        padding: 1rem;
+        font-size: 0.9rem;
       }
 
       .product-details-image img {
         aspect-ratio: 1 / 1;
+        max-width: 250px;
+      }
+    }
+    
+    /* Extra small mobile screens */
+    @media (max-width: 480px) {
+      .product-details-modal {
+        padding: 0.5rem;
+      }
+      
+      .product-details-content {
+        width: 95%;
+        margin: 0.5rem;
+      }
+      
+      .product-details-body {
+        padding: 0 0.75rem 1rem;
+      }
+      
+      .product-details-info h2 {
+        font-size: 1.3rem;
+      }
+      
+      .product-details-price {
+        font-size: 1.2rem;
+      }
+        .product-details-description {
+        padding: 0.75rem;
+        font-size: 0.9rem;
+      }
+      
+      .product-description-mobile .description-arabic,
+      .product-description-mobile .description-french {
+        padding: 12px !important;
+        font-size: 14px !important;
+        margin-bottom: 10px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      
+      .product-details-specs h4 {
+        font-size: 1rem;
+      }
+      
+      .product-details-specs li {
+        font-size: 0.9rem;
+      }
+      
+      .btn-add-to-cart, .btn-buy-now {
+        padding: 0.8rem;
+        font-size: 0.8rem;
+      }
+        .product-details-image img {
+        max-width: 200px;
+      }
+      
+      /* Mobile-specific styles for spec values */
+      .spec-value-pair {
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -2003,10 +2111,68 @@
         padding: 3rem 1.5rem;
         margin: 1.5rem 1rem;
       }      .product-list {
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
         justify-content: center;
         place-content: center;
+      }
+      
+      .product-card {
+        background: var(--bg-card);
+        border-radius: 12px;
+        box-shadow: var(--shadow-light);
+        overflow: hidden;
+        transition: var(--transition);
+        border: 1px solid rgba(0,0,0,0.05);
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .product-card .product-image {
+        height: 140px;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .product-card .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 5px;
+      }
+      
+      .product-badge {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: linear-gradient(135deg, var(--accent-color), #f1c40f);
+        color: var(--primary-color);
+        padding: 0.2rem 0.5rem;
+        border-radius: 20px;
+        font-size: 0.65rem;
+        font-weight: 700;
+        z-index: 2;
+      }
+      
+      .product-card .info {
+        padding: 0.6rem;
+      }
+      
+      .product-card h3 {
+        font-size: 0.85rem;
+        margin-bottom: 0.3rem;
+        line-height: 1.2;
+      }
+      
+      .product-card .price {
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+      
+      .add-to-cart-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.7rem;
       }
 
       .page-content h1 {
@@ -2157,6 +2323,91 @@
       display: grid;
       gap: 1.5rem;
       margin-bottom: 3rem;
+    }    .spec-item {
+      position: relative;
+      margin-top: 15px;
+      margin-bottom: 25px;
+      width: 100%;
+      padding-bottom: 10px;
+    }
+      .spec-label {
+      position: relative;
+      display: block;
+      text-align: right;
+      direction: rtl;
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #2c3e50;
+      padding-right: 10px;
+      border-right: 4px solid rgba(212, 175, 55, 0.6);
+      font-size: 16px;
+    }
+    
+    .spec-label span {
+      font-weight: 600;
+      font-size: 16px;
+    }
+    
+    .spec-label-french {
+      font-size: 14px;
+      color: #666;
+      margin-right: 5px;
+    }
+      /* Styling for the specification container to match the image */
+    .spec-value-container {
+      background-color: rgba(248, 248, 248, 0.7);
+      border-radius: 10px;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid rgba(0, 0, 0, 0.07);
+    }
+    
+    .spec-value-pair {
+      background-color: transparent;
+      box-shadow: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      padding: 5px;
+    }
+      .spec-divider {
+      width: 3px;
+      height: 30px;
+      background: #d4af37;
+      border-radius: 2px;
+      margin: 0 15px;
+    }
+    
+    .spec-value {
+      flex: 1;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: center;
+    }    .spec-value-arabic {
+      background: rgba(255, 249, 230, 0.7);
+      color: #2c3e50;
+      font-weight: 500;
+      border: 2px solid rgba(212, 175, 55, 0.3);
+      border-radius: 10px;
+      direction: rtl;
+      text-align: center;
+      padding: 8px 15px;
+      min-width: 120px;
+      flex: 1;
+    }
+    
+    .spec-value-french {
+      background: rgba(240, 240, 240, 0.8);
+      color: #2c3e50;
+      font-weight: 500;
+      border: 2px solid rgba(200, 200, 200, 0.5);
+      border-radius: 10px;
+      direction: ltr;
+      text-align: center;
+      padding: 8px 15px;
+      min-width: 120px;
+      flex: 1;
     }
 
     .cart-item {
@@ -3064,72 +3315,14 @@
       // Cart stored in memory only (no localStorage in Claude.ai artifacts)
     let cart = [];    // Product database with detailed information
     const productDatabase = {
-      'anime-tshirt-collection': {
-        id: 'anime-tshirt-collection',
-        name: 'One Piece T-shirt Collection',
-        price: 2500,
-        image: 'https://i.imgur.com/LYjPfIU.jpeg',
-        badge: 'جديد',
-        description: 'مجموعة من تيشرتات أنمي ون بيس بجودة عالية. صُنعت من قطن 100% لتوفير الراحة والمتانة. مناسبة لجميع المناسبات اليومية.',
-        specs: {
-          'المادة': 'قطن 100%',
-          'المقاسات المتوفرة': 'S, M, L, XL',
-          'الألوان': 'أسود، أبيض، أزرق',
-          'العناية': 'غسيل آلي بماء بارد'
-        }
-      },
-      'naruto-hoodie-premium': {
-        id: 'naruto-hoodie-premium',
-        name: 'Naruto Hokage Hoodie',
-        price: 3800,
-        image: 'https://i.imgur.com/ZR9EPoP.jpeg',
-        badge: 'حصري',
-        description: 'هودي ناروتو هوكاجي بتصميم حصري وجودة ممتازة. مصنوع من مزيج من القطن والبوليستر للدفء والمتانة. مثالي لعشاق أنمي ناروتو.',
-        specs: {
-          'المادة': '80% قطن، 20% بوليستر',
-          'المقاسات المتوفرة': 'M, L, XL, XXL',
-          'الألوان': 'أسود، رمادي',
-          'العناية': 'غسيل آلي بماء بارد، لا تستخدم المجفف'
-        }
-      },
-      'anime-keychain-set': {
-        id: 'anime-keychain-set',
-        name: 'Anime Characters Keychain Set',
-        price: 1200,
-        image: 'https://i.imgur.com/gf9NjYl.jpeg',
-        badge: 'مجموعة',
-        description: 'مجموعة من سلاسل المفاتيح لشخصيات أنمي مشهورة. مصنوعة من مواد عالية الجودة ومتينة. تضم 5 شخصيات مختلفة في علبة هدية أنيقة.',
-        specs: {
-          'المادة': 'سبائك الزنك',
-          'عدد القطع': '5',
-          'الحجم': '4-5 سم لكل قطعة',
-          'التغليف': 'علبة هدية'
-        }
-      },
-      'naruto-wallet': {
-        id: 'naruto-wallet',
-        name: 'Naruto Premium Wallet',
-        price: 1800,
-        image: 'https://i.imgur.com/pUFgQdj.jpeg',
-        badge: 'تخفيض',
-        description: 'محفظة ناروتو بريميوم مصنوعة من الجلد الاصطناعي عالي الجودة. تحتوي على أقسام متعددة للبطاقات والنقود. تصميم أنيق مناسب للاستخدام اليومي.',
-        specs: {
-          'المادة': 'جلد اصطناعي',
-          'الأبعاد': '12 × 9.5 سم',
-          'الأقسام': '6 فتحات للبطاقات، جيب للعملات المعدنية، قسم للنقود الورقية',
-          'اللون': 'أسود مع شعار ناروتو'
-        }
-      },
       'luffy-gear-5': {
         id: 'luffy-gear-5',
         name: 'Luffy Gear 5 King of Artist II',
         price: 7000,
         image: 'https://i.imgur.com/0yn6eDs.jpeg',
         badge: 'حصري',
-        tags: ['Figurine', 'anime', 'فيجر'],        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">شخصية مونكي دي لوفي المحرك الخامس الحصرية، مصنوعة من مادة PVC عالية الجودة، مجموعة King of Artist من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة، مثالي لمحبي ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la gamme King of Artist de Banpresto. Design artistique exceptionnel avec des détails minutieux, parfaite pour les collectionneurs et fans de One Piece.</div></div></div>',        specs: {
-          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">15 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">15 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
-          'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto/Bandai</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto/Bandai</div></div>',          'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">King of Artist II</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">King of Artist II</div></div>',
+        tags: ['Figurine', 'anime', 'فيجر'],        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">شخصية مونكي دي لوفي المحرك الخامس الحصرية، مصنوعة من مادة PVC عالية الجودة، مجموعة King of Artist من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة، مثالي لمحبي ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la gamme King of Artist de Banpresto. Design artistique exceptionnel avec des détails minutieux, parfaite pour les collectionneurs et fans de One Piece.</div></div></div>',        specs: {          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">15 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">15 cm</div></div>',
+          'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto/Bandai</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto/Bandai</div></div>','السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">King of Artist II</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">King of Artist II</div></div>',
           'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">مونكي دي لوفي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Monkey D. Luffy</div></div>',
           'الأنمي/Anime': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ون بيس</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">One Piece</div></div>'
         }
@@ -3141,9 +3334,7 @@
         image: 'https://i.imgur.com/etUU55k.jpeg',
         badge: 'تخفيض',
         tags: ['Figurine', 'anime', 'فيجر'],
-        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Minato Namikaze، مصنوعة من مادة PVC عالية الجودة، من مجموعة Funko POP السلسلة رقم 935. تصميم فني استثنائي مع تفاصيل دقيقة، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine du personnage Minato Namikaze, fabriquée en matériau PVC de haute qualité, de la marque Funko POP série n°935. Design artistique exceptionnel avec des détails précis, parfait pour les fans de Naruto Shippuden.</div></div></div>',        specs: {
-          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">10سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">10CM</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
+        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Minato Namikaze، مصنوعة من مادة PVC عالية الجودة، من مجموعة Funko POP السلسلة رقم 935. تصميم فني استثنائي مع تفاصيل دقيقة، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine du personnage Minato Namikaze, fabriquée en matériau PVC de haute qualité, de la marque Funko POP série n°935. Design artistique exceptionnel avec des détails précis, parfait pour les fans de Naruto Shippuden.</div></div></div>',        specs: {          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">10سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">10CM</div></div>',
           'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Funko POP</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Funko POP</div></div>',
           'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">935</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">935</div></div>',          'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ميناتو ناميكازي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Minato Namikaze</div></div>',
           'الأنمي/Anime': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ناروتو</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Naruto</div></div>'
@@ -3155,10 +3346,8 @@
         image: 'https://i.imgur.com/950mAvW.jpeg',
         badge: 'الأكثر طلباً',
         tags: ['Figurine', 'anime', 'فيجر'],
-        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Naruto Uzumaki الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Grandista من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة لوضعية القتال الكلاسيكية، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Naruto Uzumaki en PVC haute qualité, issue de la collection Grandista de Banpresto. Design artistique exceptionnel avec des détails minutieux de la posture de combat classique, parfaite pour les fans de Naruto.</div></div></div>',        specs: {
-          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">30 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">30 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
-          'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto/Bandai</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto/Bandai</div></div>',          'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Grandista</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Grandista</div></div>',          'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ناروتو أوزوماكي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Naruto Uzumaki</div></div>',
+        description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Naruto Uzumaki الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Grandista من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة لوضعية القتال الكلاسيكية، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Naruto Uzumaki en PVC haute qualité, issue de la collection Grandista de Banpresto. Design artistique exceptionnel avec des détails minutieux de la posture de combat classique, parfaite pour les fans de Naruto.</div></div></div>',        specs: {          'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">30 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">30 cm</div></div>',
+          'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto/Bandai</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto/Bandai</div></div>','السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Grandista</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Grandista</div></div>',          'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ناروتو أوزوماكي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Naruto Uzumaki</div></div>',
           'الأنمي/Anime': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">ناروتو</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Naruto</div></div>'
         }
       },      'Itachi Uchiha Grandista': {
@@ -3169,7 +3358,6 @@
         badge: 'جديد',
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Itachi Uchiha الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Grandista من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة للشارينغان والعباءة، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Itachi Uchiha en PVC haute qualité, issue de la collection Grandista de Banpresto. Design artistique exceptionnel avec des détails minutieux du Sharingan et de la cape, parfaite pour les fans de Naruto.</div></div></div>',        specs: {'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">27 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">27 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
           'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto</div></div>',
           'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Grandista</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Grandista</div></div>',
           'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">إيتاتشي أوتشيها</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Itachi Uchiha</div></div>',
@@ -3184,7 +3372,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Sasuke Uchiha الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Grandista من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة للشارينغان والسيف، مثالي لمحبي ناروتو.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Sasuke Uchiha en PVC haute qualité, issue de la collection Grandista de Banpresto. Design artistique exceptionnel avec des détails minutieux du Sharingan et de l\'épée, parfaite pour les fans de Naruto.</div></div></div>',specs: {
           'الارتفاع/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">23 سم</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">23 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">PVC عالي الجودة</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">PVC haute qualité</div></div></div>',
           'الشركة المصنعة/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">Banpresto</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">Grandista</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Grandista</div></div></div>',          'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">ساسكي أوتشيها</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Sasuke Uchiha</div></div></div>',
           'الأنمي/Anime': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">ناروتو</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Naruto</div></div></div>'
@@ -3198,7 +3385,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Son Goku الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Grandista من Banpresto. تصميم فني استثنائي مع تفاصيل دقيقة لوضعية القتال وتدفق الطاقة، مثالي لمحبي دراغون بول.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Son Goku en PVC haute qualité, issue de la collection Grandista de Banpresto. Design artistique exceptionnel avec des détails minutieux de la posture de combat et flux d\'énergie, parfaite pour les fans de Dragon Ball.</div></div></div>',        specs: {
           'الارتفاع/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">26 سم</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">26 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">PVC عالي الجودة</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">PVC haute qualité</div></div></div>',
           'الشركة المصنعة/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">Banpresto</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">Grandista</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Grandista</div></div></div>',          'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">سون غوكو</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Son Goku</div></div></div>',
           'الأنمي/Anime': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);">دراغون بول</div><div style="width: 4px; height: 60px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 18px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);">Dragon Ball</div></div></div>'
@@ -3212,7 +3398,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Monkey D. Luffy Gear 5 الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة المجلد الثالث من Banpresto. يجسد قوة إله الشمس نيكا الأسطورية مع المرونة المطاطية اللانهائية والابتسامة المشعة. تحفة فنية من عالم ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la collection Volume 3 de Banpresto. Incarnant la puissance légendaire du dieu solaire Nika avec élasticité caoutchouteuse infinie et sourire radieux. Chef-d\'œuvre artistique de l\'univers One Piece.</div></div></div>',        specs: {
           'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">18 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">18 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
           'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto</div></div>',
           'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Fig Life</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Fig Life</div></div>',
           'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">مونكي دي لوفي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Monkey D. Luffy</div></div>'
@@ -3226,7 +3411,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Monkey D. Luffy Gear 5 الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة المجلد الثاني من Banpresto. يتميز بالوضعية الديناميكية والطاقة الكارتونية المميزة لـ Gear 5 مع تفاصيل الألوان النابضة بالحياة. إصدار جديد ومحدود.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la collection Volume 2 de Banpresto. Avec pose dynamique et énergie cartoonesque distinctive de Gear 5 aux détails colorés vibrants. Nouvelle édition limitée.</div></div></div>',        specs: {
           'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">21 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">21 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
           'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto</div></div>',
           'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Fig Life</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Fig Life</div></div>',
           'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">مونكي دي لوفي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Monkey D. Luffy</div></div>'
@@ -3240,7 +3424,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Monkey D. Luffy Gear 5 الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة المجلد الأول من Banpresto. يتميز بالشكل الأسطوري لـ Gear 5 مع التأثيرات البيضاء المميزة والابتسامة المشعة. قطعة فنية استثنائية لمحبي ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 en PVC haute qualité, issue de la collection Volume 1 de Banpresto. Avec la forme légendaire de Gear 5 aux effets blancs distinctifs et sourire radieux. Pièce d\'art exceptionnelle pour fans de One Piece.</div></div></div>',        specs: {
           'الطول/Hauteur': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">20 سم</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">20 cm</div></div>',
-          'المادة/Matériau': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">PVC عالي الجودة</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">PVC haute qualité</div></div>',
           'المصنع/Fabricant': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Banpresto</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Banpresto</div></div>',
           'السلسلة/Série': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">Fig Life</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Fig Life</div></div>',
           'الشخصية/Personnage': '<div style="display: flex; justify-content: center; align-items: center; gap: 15px; padding: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(52, 73, 94, 0.1)); border-radius: 10px; margin: 5px 0;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(212, 175, 55, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3);">مونكي دي لوفي</div><div style="width: 3px; height: 40px; background: linear-gradient(to bottom, #d4af37, #2c3e50); border-radius: 2px; margin: 0 10px;"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 120px; padding: 12px; border-radius: 8px; background: rgba(52, 73, 94, 0.15); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3);">Monkey D. Luffy</div></div>'
@@ -3253,7 +3436,6 @@
         badge: 'حصري',
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Monkey D. Luffy Gear 5 الحصري من الإصدار الرابع، مصنوع من مادة PVC عالية الجودة. يُظهر لوفي في شكل إله الشمس نيكا مع تأثيرات الطاقة المضيئة والوضعية الديناميكية المميزة. قطعة استثنائية للمجموعة.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy Gear 5 de la quatrième édition, fabriquée en PVC haute qualité. Montre Luffy sous sa forme du Dieu Soleil Nika avec effets d\'énergie lumineux et pose dynamique distinctive. Pièce exceptionnelle pour collection.</div></div></div>',        specs: {'الطول/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">22 سم</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">22 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">PVC عالي الجودة</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">PVC haute qualité</div></div></div>',
           'المصنع/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Banpresto</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Fig Life</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Fig Life</div></div></div>',
           'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مونكي دي لوفي</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Monkey D. Luffy</div></div></div>'
@@ -3267,7 +3449,6 @@
         badge: 'تخفيض 22%',
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Midoriya Izuku الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Amazing Heroes Plus. يُظهر ديكو في وضعية ديناميكية مع تأثيرات طاقة One For All المضيئة. تفاصيل دقيقة للبدلة الخضراء المميزة.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Midoriya Izuku en PVC haute qualité, issue de la collection Amazing Heroes Plus. Montre Deku en pose dynamique avec effets d\'énergie One For All lumineux. Détails précis du costume vert distinctif.</div></div></div>',        specs: {'الطول/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">23 سم</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">23 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">PVC عالي الجودة</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">PVC haute qualité</div></div></div>',
           'المصنع/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Banpresto</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Amazing Heroes Plus</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Amazing Heroes Plus</div></div></div>',          'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">ميدوريا إيزوكو</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Midoriya Izuku</div></div></div>',
           'الأنمي/Anime': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">أكاديمية الأبطال</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">My Hero Academia</div></div></div>'
@@ -3280,7 +3461,6 @@
         badge: 'محدود',
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Monkey D. Luffy الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Masterlise Expiece المميزة. يُظهر لوفي في وضعية القتال الكلاسيكية مع ابتسامته المميزة وقبعة القش الأسطورية. تحفة فنية للمجموعة.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Monkey D. Luffy en PVC haute qualité, issue de la collection Masterlise Expiece distinctive. Montre Luffy en pose de combat classique avec son sourire caractéristique et le chapeau de paille légendaire. Chef-d\'œuvre artistique pour collection.</div></div></div>',        specs: {'الطول/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">19 سم</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">19 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">PVC عالي الجودة</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">PVC haute qualité</div></div></div>',
           'المصنع/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Banpresto</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Masterlise Expiece</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Masterlise Expiece</div></div></div>',
           'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مونكي دي لوفي</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Monkey D. Luffy</div></div></div>'
@@ -3294,7 +3474,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">مجسم شخصية Satoru Gojo الحصري، مصنوع من مادة PVC عالية الجودة، من مجموعة Awakening Luminasta المضيئة. يُظهر غوجو في وضعية الصحوة مع عيونه الزرقاء المتوهجة وتقنية اللانهائية. تحفة فنية للمجموعة.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Satoru Gojo en PVC haute qualité, issue de la collection Awakening Luminasta illuminée. Montre Gojo en pose d\'éveil avec ses yeux bleus lumineux et technique de l\'infini. Chef-d\'œuvre artistique pour collection.</div></div></div>',specs: {
           'الطول/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">24 سم</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">24 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">PVC عالي الجودة</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">PVC haute qualité</div></div></div>',
           'المصنع/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">SEGA</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">SEGA</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Awakening Luminasta</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Awakening Luminasta</div></div></div>',          'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">ساتورو غوجو</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Satoru Gojo</div></div></div>',
           'الأنمي/Anime': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">جوجيتسو كايسن</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Jujutsu Kaisen</div></div></div>'
@@ -3308,7 +3487,6 @@
         tags: ['Figurine', 'anime', 'فيجر'],
         description: '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">فيجور زورو الحصري من مجموعة Battle Record Collection الجديدة. يتميز بتفاصيل نحت استثنائية ووضعية القتال الكلاسيكية مع السيوف الثلاثة الأسطورية من ون بيس.</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Figurine exclusive Zoro de la nouvelle collection Battle Record. Avec des détails de sculpture exceptionnels et la pose de combat classique avec les trois épées légendaires de One Piece.</div></div></div>',specs: {
           'الطول/Hauteur': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">16 cm</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">16 cm</div></div></div>',
-          'المادة/Matériau': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">PVC عالي الجودة</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">PVC haute qualité</div></div></div>',
           'المصنع/Fabricant': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Banpresto</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Banpresto</div></div></div>',
           'السلسلة/Série': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">Battle Record Collection</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Battle Record Collection</div></div></div>',          'الشخصية/Personnage': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">رورونوا زورو</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">Roronoa Zoro</div></div></div>',
           'الأنمي/Anime': '<div style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(52, 73, 94, 0.08)); border-radius: 15px; padding: 20px; margin: 10px 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border: 1px solid rgba(212, 175, 55, 0.2);"><div style="display: flex; justify-content: center; align-items: center; gap: 20px; padding: 15px;"><div style="text-align: center; direction: rtl; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(212, 175, 55, 0.3); box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2); line-height: 1.6;">ون بيس</div><div style="width: 4px; height: 80px; background: linear-gradient(to bottom, #d4af37, #2c3e50, #d4af37); border-radius: 3px; margin: 0 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.2);"></div><div style="text-align: center; direction: ltr; flex: 1; min-width: 180px; padding: 18px; border-radius: 12px; background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05)); color: #2c3e50; font-weight: bold; font-size: 16px; border: 2px solid rgba(52, 73, 94, 0.3); box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2); line-height: 1.6;">One Piece</div></div></div>'
@@ -4762,18 +4940,139 @@ Date: ${new Date().toLocaleString('fr-FR', {
           badge.style.display = 'block';
         } else {
           badge.style.display = 'none';
-        }
-
-        // Set basic product info
+        }        // Set basic product info
         title.textContent = product.name;
         price.textContent = `${product.price.toLocaleString()} دج`;
-        description.innerHTML = `<p>${product.description}</p>`;        // Set specifications
-        if (product.specs && Object.keys(product.specs).length > 0) {
-          let specsHTML = '<h4>المواصفات:</h4><ul>';
-          for (const [key, value] of Object.entries(product.specs)) {
-            specsHTML += `<li><strong>${key}:</strong> ${value}</li>`;
+        
+        // Process description to make it mobile-friendly
+        if (product.description) {
+          // Create a temporary div to parse the HTML
+          const tempDiv = document.createElement('div');
+          tempDiv.innerHTML = product.description;
+          
+          // Find the flex container with Arabic and French text
+          const flexContainer = tempDiv.querySelector('div[style*="display: flex"]');
+          
+          if (flexContainer) {
+            // Extract Arabic and French text content
+            const textDivs = flexContainer.querySelectorAll('div[style*="flex: 1"]');
+            let arabicText = '';
+            let frenchText = '';
+            
+            textDivs.forEach(div => {
+              const content = div.textContent.trim();
+              if (div.style.direction === 'rtl' || content.match(/[\u0600-\u06FF]/)) {
+                arabicText = content;
+              } else if (div.style.direction === 'ltr' || content.match(/[a-zA-Z]/)) {
+                frenchText = content;
+              }
+            });
+            
+            // Create mobile-friendly vertical layout
+            description.innerHTML = `
+              <div class="product-description-mobile">
+                <div class="description-arabic" dir="rtl" style="
+                  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+                  color: #2c3e50;
+                  font-weight: bold;
+                  font-size: 16px;
+                  border: 2px solid rgba(212, 175, 55, 0.3);
+                  border-radius: 12px;
+                  padding: 18px;
+                  margin-bottom: 15px;
+                  box-shadow: 0 3px 10px rgba(212, 175, 55, 0.2);
+                  line-height: 1.6;
+                  text-align: center;
+                  overflow-wrap: break-word;
+                ">
+                  ${arabicText}
+                </div>
+                <div class="description-french" dir="ltr" style="
+                  background: linear-gradient(135deg, rgba(52, 73, 94, 0.15), rgba(52, 73, 94, 0.05));
+                  color: #2c3e50;
+                  font-weight: bold;
+                  font-size: 16px;
+                  border: 2px solid rgba(52, 73, 94, 0.3);
+                  border-radius: 12px;
+                  padding: 18px;
+                  box-shadow: 0 3px 10px rgba(52, 73, 94, 0.2);
+                  line-height: 1.6;
+                  text-align: center;
+                  overflow-wrap: break-word;
+                ">
+                  ${frenchText}
+                </div>
+              </div>
+            `;
+          } else {
+            // Fallback for simple descriptions
+            description.innerHTML = `<p style="overflow-wrap: break-word; word-wrap: break-word;">${product.description}</p>`;
           }
-          specsHTML += '</ul>';
+        } else {
+          description.innerHTML = '';
+        }        // Set specifications
+        if (product.specs && Object.keys(product.specs).length > 0) {
+          let specsHTML = '<h4>المواصفات:</h4>';
+          
+          for (const [key, value] of Object.entries(product.specs)) {
+            const keyParts = key.split('/');
+            const arabicKey = keyParts[0];
+            const frenchKey = keyParts.length > 1 ? keyParts[1] : '';
+            
+            // Check if value is HTML with flex layout (typical for bilingual specs)
+            if (typeof value === 'string' && value.includes('display: flex')) {
+              // Create a temporary div to parse the HTML
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = value;
+              
+              // Find Arabic and French content
+              const textDivs = tempDiv.querySelectorAll('div[style*="flex: 1"]');
+              let arabicValue = '';
+              let frenchValue = '';
+              
+              textDivs.forEach(div => {
+                const content = div.textContent.trim();
+                if (div.style.direction === 'rtl' || div.hasAttribute('dir') && div.getAttribute('dir') === 'rtl') {
+                  arabicValue = content;
+                } else if (div.style.direction === 'ltr' || div.hasAttribute('dir') && div.getAttribute('dir') === 'ltr') {
+                  frenchValue = content;
+                } else if (content.match(/[\u0600-\u06FF]/)) {
+                  // Contains Arabic characters
+                  arabicValue = content;
+                } else {
+                  // Assume everything else is French/Latin
+                  frenchValue = content;
+                }
+              });
+                // Create formatted spec item with nice styles - horizontal layout like in the image
+              specsHTML += `
+                <div class="spec-item">
+                  <div class="spec-label">
+                    ${arabicKey}${frenchKey ? `/${frenchKey}` : ''}:
+                  </div>
+                  <div class="spec-value-container">                    <div class="spec-value-pair">
+                      <div class="spec-value spec-value-arabic">${arabicValue}</div>
+                      <div class="spec-divider"></div>
+                      <div class="spec-value spec-value-french">${frenchValue}</div>
+                    </div>
+                  </div>
+                </div>
+              `;
+            } else {
+              // Simple text value - create a simpler layout
+              specsHTML += `
+                <div class="spec-item">
+                  <div class="spec-label">
+                    <span>${arabicKey}</span>
+                  </div>
+                  <div class="spec-value-container">
+                    <div class="spec-value spec-value-arabic">${value}</div>
+                  </div>
+                </div>
+              `;
+            }
+          }
+          
           specs.innerHTML = specsHTML;
         } else {
           specs.innerHTML = '';
